@@ -13,14 +13,18 @@ namespace CSharpBasics
         {
             // 問題 1: 変数と四則演算
             // 2つの整数 a と b を受け取り、その合計を返してください。
-            throw new NotImplementedException();
+            int sum;
+            sum = a + b;
+            return sum;
         }
 
         public static int Remainder(int dividend, int divisor)
         {
             // 問題 2: 剰余演算
             // dividend を divisor で割った余りを返してください。
-            throw new NotImplementedException();
+            int result;
+            result = dividend % divisor;
+            return result;
         }
 
         public static double CalculateCircleArea(double radius)
@@ -28,14 +32,25 @@ namespace CSharpBasics
             // 問題 3: double と定数
             // 半径 radius の円の面積を返してください。
             // 円周率には Math.PI を使ってください。
-            throw new NotImplementedException();
+            double circle;
+            circle = radius * radius * Math.PI;
+            return circle;
         }
 
         public static bool IsEven(int number)
         {
             // 問題 4: bool と条件判定
             // number が偶数なら true、奇数なら false を返してください。
-            throw new NotImplementedException();
+            bool result;
+            if (number % 2 == 0)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+            return result;
         }
 
         public static string GetGrade(int score)
@@ -44,7 +59,30 @@ namespace CSharpBasics
             // score に応じて成績を返してください。
             // 90点以上は "A"、80点以上は "B"、70点以上は "C"、60点以上は "D"、それ未満は "F" を返します。
             // score が 0 未満または 100 より大きい場合は "Invalid" を返してください。
-            throw new NotImplementedException();
+            if (score < 0 || score > 100)
+            {
+                return "Invalid";
+            }
+            else if (score >= 90)
+            {
+                return "A";
+            }
+            else if (score >= 80)
+            {
+                return "B";
+            }
+            else if (score >= 70)
+            {
+                return "C";
+            }
+            else if (score >= 60)
+            {
+                return "D";
+            }
+            else
+            {
+                return "F";
+            }
         }
 
         public static string GetDayName(int day)
@@ -53,7 +91,35 @@ namespace CSharpBasics
             // day が 1 なら "Monday"、2 なら "Tuesday"、3 なら "Wednesday"、
             // 4 なら "Thursday"、5 なら "Friday"、6 なら "Saturday"、7 なら "Sunday" を返してください。
             // 1 から 7 以外の場合は "Invalid" を返してください。
-            throw new NotImplementedException();
+            switch (day)
+
+            {
+                case 1:
+                    return "Monday";
+
+                case 2:
+                    return "Tuesday";
+
+                case 3:
+                    return "Wednesday";
+
+                case 4:
+                    return "Thursday";
+
+                case 5:
+                    return "Friday";
+
+                case 6:
+                    return "Saturday";
+
+                case 7:
+                    return "Sunday";
+
+                default:
+                    return "Invalid";
+            }
+
+
         }
 
         public static int SumFromOneTo(int n)
@@ -61,7 +127,19 @@ namespace CSharpBasics
             // 問題 7: for ループ
             // 1 から n までの整数の合計を返してください。
             // n が 0 以下の場合は 0 を返してください。
-            throw new NotImplementedException();
+            if (n <= 0)
+            {
+                return 0;
+            }
+            else
+            {
+                int sum = 0;
+                for (int i = 0; i <= n; i++)
+                {
+                    sum += i;
+                }
+                return sum;
+            }
         }
 
         public static int CountDownByWhile(int start)
@@ -70,7 +148,15 @@ namespace CSharpBasics
             // start から 1 まで while 文でカウントした回数を返してください。
             // 例: start が 3 の場合、3, 2, 1 の3回なので 3 を返します。
             // start が 0 以下の場合は 0 を返してください。
-            throw new NotImplementedException();
+            int num;
+            num = start;
+            int count = 0;
+            while (num >= 1)
+            {
+                count += 1;
+                --num;
+            }
+            return count;
         }
 
         public static int FindMax(int[] numbers)
