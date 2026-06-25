@@ -84,9 +84,25 @@ namespace CSharpBasics
             // 4 なら "Thursday"、5 なら "Friday"、6 なら "Saturday"、7 なら "Sunday" を返してください。
             // 1 から 7 以外の場合は "Invalid" を返してください。
 
-
-           
-
+            switch (day)
+            {
+                case 1:
+                    return "Monday";
+                case 2:
+                    return "Tuesday";
+                case 3:
+                    return "Wednesday";
+                case 4:
+                    return "Thursday";
+                case 5:
+                    return "Friday";
+                case 6:
+                    return "Saturday";
+                case 7:
+                    return "Sunday";
+                default:
+                    return "Invalid";
+            }
         }
 
         public static int SumFromOneTo(int n)
@@ -94,7 +110,13 @@ namespace CSharpBasics
             // 問題 7: for ループ
             // 1 から n までの整数の合計を返してください。
             // n が 0 以下の場合は 0 を返してください。
-            throw new NotImplementedException();
+            int sum = 0;
+            if (n <= 0) return 0;
+            for (int i = 0; i <= n; i++)
+            {
+                sum += i;
+            }
+            return sum;
         }
 
         public static int CountDownByWhile(int start)
@@ -103,7 +125,13 @@ namespace CSharpBasics
             // start から 1 まで while 文でカウントした回数を返してください。
             // 例: start が 3 の場合、3, 2, 1 の3回なので 3 を返します。
             // start が 0 以下の場合は 0 を返してください。
-            throw new NotImplementedException();
+            int count = 0;
+            while (start >= 1)
+            {
+                count += 1;
+                start -= 1;
+            }
+            return count;
         }
 
         public static int FindMax(int[] numbers)
