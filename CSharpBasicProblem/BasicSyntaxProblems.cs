@@ -325,7 +325,17 @@ namespace CSharpBasics
             // sentence を半角スペースで区切ったとき、最も長い単語の文字数を返してください。
             // 連続したスペースや前後のスペースは単語として数えません。
             // 単語が1つもない場合は 0 を返してください。
-            throw new NotImplementedException();
+            string[] words = sentence.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (words.Length == 0) return 0;
+            int longestWordLength = words[0].Length;
+            for (int i = 1; i < words.Length; i++)
+            {
+                if (longestWordLength < words[i].Length)
+                {
+                    longestWordLength = words[i].Length;
+                }
+            }
+            return longestWordLength;
         }
 
         public static bool IsPalindromeIgnoreCaseAndSpaces(string text)
