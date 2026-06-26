@@ -139,14 +139,31 @@ namespace CSharpBasics
             // 問題 9: 配列
             // 整数配列 numbers の最大値を返してください。
             // numbers が空の場合は ArgumentException を投げてください。
-            throw new NotImplementedException();
+            if (numbers.Length == 0) throw new ArgumentException();
+            int max = numbers[0];
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if (numbers[i] > max)
+                {
+                    max = numbers[i];
+                }
+            }
+            return max;
         }
 
         public static int CountPositiveNumbers(int[] numbers)
         {
             // 問題 10: foreach ループ
             // 整数配列 numbers の中にある正の数、つまり 1 以上の数の個数を返してください。
-            throw new NotImplementedException();
+            int count = 0;
+            foreach (int n in numbers)
+            {
+                if (n > 0)
+                {
+                    count++;
+                }
+            }
+            return count;
         }
 
         public static List<int> DoubleEachNumber(List<int> numbers)
@@ -154,7 +171,12 @@ namespace CSharpBasics
             // 問題 11: List<T>
             // numbers の各要素を2倍にした新しい List<int> を返してください。
             // 引数の List 自体は変更しないでください。
-            throw new NotImplementedException();
+            List<int> result = new List<int>();
+            foreach (int n in numbers)
+            {
+                result.Add(n * 2);
+            }
+            return result;
         }
 
         public static string RepeatText(string text, int count)
@@ -162,7 +184,13 @@ namespace CSharpBasics
             // 問題 12: 文字列とループ
             // text を count 回連結した文字列を返してください。
             // count が 0 以下の場合は空文字列を返してください。
-            throw new NotImplementedException();
+            string result = string.Empty;
+            if (count <= 0) return result;
+            for (int i = 1; i <= count; i++)
+            {
+                result += text;
+            }
+            return result;
         }
 
         public static string NormalizeName(string firstName, string lastName)
@@ -170,7 +198,7 @@ namespace CSharpBasics
             // 問題 13: 文字列メソッド
             // firstName と lastName の前後の空白を取り除き、"First Last" の形式で返してください。
             // 例: firstName が " Taro "、lastName が " Yamada " の場合は "Taro Yamada" を返します。
-            throw new NotImplementedException();
+            return $"{firstName.Trim()} {lastName.Trim()}";
         }
 
         public static bool ContainsIgnoreCase(string source, string keyword)
@@ -178,7 +206,10 @@ namespace CSharpBasics
             // 問題 14: 大文字小文字を区別しない文字列検索
             // source の中に keyword が含まれていれば true、含まれていなければ false を返してください。
             // 大文字と小文字は区別しないでください。
-            throw new NotImplementedException();
+            string upperSource = source.ToUpper();
+            string upperKeyword = keyword.ToUpper();
+
+            return upperSource.Contains(upperKeyword);
         }
 
         public static Dictionary<string, int> CountWords(IEnumerable<string> words)
@@ -186,7 +217,19 @@ namespace CSharpBasics
             // 問題 15: Dictionary<TKey, TValue>
             // words に含まれる各単語の出現回数を Dictionary<string, int> として返してください。
             // 例: ["apple", "banana", "apple"] の場合、"apple" は 2、"banana" は 1 です。
-            throw new NotImplementedException();
+            Dictionary<string, int> result = new Dictionary<string, int>();
+            foreach (string w in words)
+            {
+                if (!result.ContainsKey(w))
+                {
+                    result[w] = 1;
+                }
+                else
+                {
+                    result[w] += 1;
+                }
+            }
+            return result;
         }
 
         public static double CalculateValidScoreAverage(int[] scores)
@@ -195,7 +238,18 @@ namespace CSharpBasics
             // scores のうち 0 以上 100 以下の値だけを有効な点数として扱い、その平均値を返してください。
             // 無効な点数は平均の計算から除外してください。
             // 有効な点数が1つもない場合は 0 を返してください。
-            throw new NotImplementedException();
+            double sum = 0;
+            int denominator = 0;
+            foreach (int score in scores){
+                if (score < 0 || 100 < score) continue;
+                sum += score;
+                denominator += 1;
+            }
+            if (denominator != 0)
+            {
+                return sum / denominator;
+            }
+            return 0;
         }
 
         public static List<string> BuildFizzBuzz(int start, int end)
@@ -205,7 +259,30 @@ namespace CSharpBasics
             // 3 と 5 の両方で割り切れる数は "FizzBuzz"、3 で割り切れる数は "Fizz"、
             // 5 で割り切れる数は "Buzz"、それ以外は数値を文字列にしたものを入れてください。
             // start が end より大きい場合は空の List<string> を返してください。
-            throw new NotImplementedException();
+            List<string> result = new List<string>();
+            int i = start;
+            if (i > end) return result;
+            while (i <= end)
+            {
+                if (i % 3 == 0 && i % 5 == 0)
+                {
+                    result.Add("FizzBuzz");
+                }
+                else if(i % 3 == 0)
+                {
+                    result.Add("Fizz");
+                }
+                else if (i % 5 == 0)
+                {
+                    result.Add("Buzz");
+                }
+                else
+                {
+                    result.Add(i.ToString());
+                }
+                i += 1;
+            }
+            return result;
         }
 
         public static int GetLongestWordLength(string sentence)
@@ -214,7 +291,19 @@ namespace CSharpBasics
             // sentence を半角スペースで区切ったとき、最も長い単語の文字数を返してください。
             // 連続したスペースや前後のスペースは単語として数えません。
             // 単語が1つもない場合は 0 を返してください。
-            throw new NotImplementedException();
+            string[] words = sentence.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (words.Length == 0) return 0;
+
+            int LongestWordsLength = 0; 
+            for (int i = 0; i <= words.Length -1; i++)
+            {
+                if (words[i].Length > LongestWordsLength)
+                {
+                    LongestWordsLength = words[i].Length;
+                }
+            }
+
+            return LongestWordsLength;         
         }
 
         public static bool IsPalindromeIgnoreCaseAndSpaces(string text)
