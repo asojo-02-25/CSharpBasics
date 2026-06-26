@@ -344,7 +344,15 @@ namespace CSharpBasics
             // text が回文なら true、そうでなければ false を返してください。
             // 大文字と小文字は区別せず、半角スペースは無視してください。
             // 例: "Never odd or even" はスペースと大文字小文字を無視すると回文なので true です。
-            throw new NotImplementedException();
+            string normalizeText = text.Replace(" ", "").ToUpper();
+            Console.WriteLine(normalizeText);
+            char[] arr = normalizeText.ToCharArray();
+
+            for (int i = 0; i < arr.Length / 2; i++)
+            {
+                if (arr[i] != arr[arr.Length - 1 - i]) return false;
+            }
+            return true;
         }
 
         public static List<int> RotateLeft(List<int> numbers, int count)
@@ -355,7 +363,30 @@ namespace CSharpBasics
             // count が要素数より大きい場合も正しく回転してください。
             // numbers が空の場合は空の List<int> を返してください。
             // 引数の List 自体は変更しないでください。
-            throw new NotImplementedException();
+            List<int> result = new List<int>(numbers);
+            Console.WriteLine(result);
+            if (numbers.Count == 0) return numbers;
+
+            int i = 0;
+            int initial = 0;
+
+            while (i < count % result.Count)
+            {
+                for (int j = 0; j < result.Count; j++)
+                {
+                    if (j == 0)
+                    {
+                        initial = result[j];
+                    }
+                    else
+                    {
+                        result[j - 1] = result[j];
+                    }
+                }
+                result[result.Count - 1] = initial;
+                i += 1;
+            }
+            return result;
         }
 
         public static Dictionary<string, int> MergeWordCounts(
