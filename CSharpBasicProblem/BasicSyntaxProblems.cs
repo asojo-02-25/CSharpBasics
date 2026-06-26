@@ -396,7 +396,29 @@ namespace CSharpBasics
             // 問題 21: 難易度 3 - Dictionary<TKey, TValue> の更新
             // 2つの Dictionary<string, int> を結合し、同じキーがある場合は値を合計した新しい Dictionary を返してください。
             // first と second 自体は変更しないでください。
-            throw new NotImplementedException();
+            Dictionary<string, int> result = new Dictionary<string, int>();
+            foreach (var item in first)
+            {
+                if (second.TryGetValue(item.Key, out int num))
+                {
+                    int sum = item.Value + num;
+                    result[item.Key] = sum;
+                }
+                else
+                {
+                    result[item.Key] = item.Value;
+                }
+            }
+
+            foreach (var item in second)
+            {
+
+                if (!first.ContainsKey(item.Key))
+                {
+                    result[item.Key] = item.Value;
+                }
+            }
+            return result;
         }
 
         public static string FindMostFrequentWord(IEnumerable<string> words)
@@ -407,7 +429,33 @@ namespace CSharpBasics
             // 空文字列になった単語は無視してください。
             // 最多の単語が複数ある場合は、最初にその最多回数へ到達した単語を返してください。
             // 有効な単語が1つもない場合は空文字列を返してください。
-            throw new NotImplementedException();
+            if (words == null) return "";
+            int max = 0;
+            string maxWord = string.Empty;
+
+            Dictionary<string, int> counter = new Dictionary<string, int>();
+            foreach (string word in words)
+            {
+                string normalizeWord = word.Trim().ToLower();
+
+                if (normalizeWord == "") continue;
+
+                if (!counter.ContainsKey(normalizeWord))
+                {
+                    counter[normalizeWord] = 1;
+                }
+                else
+                {
+                    counter[normalizeWord] += 1;
+                }
+               
+                if (counter[normalizeWord] > max)
+                {
+                    max = counter[normalizeWord];
+                    maxWord = normalizeWord;
+                }
+            }
+            return maxWord;
         }
 
         public static bool AreParenthesesBalanced(string text)
@@ -416,7 +464,24 @@ namespace CSharpBasics
             // text に含まれる丸括弧 '(' と ')' の対応が正しければ true、正しくなければ false を返してください。
             // 丸括弧以外の文字は無視してください。
             // 途中で閉じ括弧が多くなる場合、または最後に開き括弧が残る場合は false です。
-            throw new NotImplementedException();
+            int rightCounter = 0;
+            int leftCounter = 0;
+
+            foreach (char c in text)
+            {
+                if (c == '(')
+                {
+                    leftCounter += 1;
+                }
+                if (c == ')')
+                {
+                    rightCounter += 1;
+                }
+                if (leftCounter < rightCounter) return false;
+            }
+
+            if (leftCounter == rightCounter) return true;
+            return false;
         }
 
         public static List<int> CalculateRunningTotals(int[] numbers)
@@ -425,7 +490,16 @@ namespace CSharpBasics
             // numbers の各位置までの累積和を List<int> として返してください。
             // 例: [3, -1, 4] の場合、[3, 2, 6] を返します。
             // numbers が空の場合は空の List<int> を返してください。
-            throw new NotImplementedException();
+            List<int> result = new List<int>();
+            if (numbers.Length == 0) return result;
+
+            int sum = 0;
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                sum += numbers[i];
+                result.Add(sum);
+            }
+            return result;
         }
 
         public static Dictionary<string, List<int>> GroupNumbersByParity(int[] numbers)
@@ -434,7 +508,25 @@ namespace CSharpBasics
             // numbers を偶数と奇数に分け、"Even" と "Odd" をキーにした Dictionary<string, List<int>> を返してください。
             // 各 List では元の配列に出てきた順序を保ってください。
             // 偶数または奇数が1つもない場合でも、"Even" と "Odd" の両方のキーを必ず含めてください。
-            throw new NotImplementedException();
+            List<int> evenArr = new List<int>();
+            List<int> oddArr = new List<int>();
+
+            foreach (int n in numbers)
+            {
+                if (n % 2 == 0)
+                {
+                    evenArr.Add(n);
+                }
+                else
+                {
+                    oddArr.Add(n);
+                }
+            }
+            Dictionary<string, List<int>> result = new Dictionary<string, List<int>>();
+            result["Even"] = evenArr;
+            result["Odd"] = oddArr;
+
+            return result;
         }
     }
 
