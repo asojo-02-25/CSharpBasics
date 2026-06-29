@@ -1,4 +1,5 @@
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 
 namespace CSharpBasics
@@ -312,7 +313,20 @@ namespace CSharpBasics
             // text が回文なら true、そうでなければ false を返してください。
             // 大文字と小文字は区別せず、半角スペースは無視してください。
             // 例: "Never odd or even" はスペースと大文字小文字を無視すると回文なので true です。
-            throw new NotImplementedException();
+
+            string normalized = text
+                .Replace(" ", "")
+                .ToUpper();
+
+            for (int i = 0; i < normalized.Length / 2; i++)
+            {
+                
+                if (normalized[i] != normalized[normalized.Length - 1 - i])
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public static List<int> RotateLeft(List<int> numbers, int count)
@@ -323,7 +337,16 @@ namespace CSharpBasics
             // count が要素数より大きい場合も正しく回転してください。
             // numbers が空の場合は空の List<int> を返してください。
             // 引数の List 自体は変更しないでください。
-            throw new NotImplementedException();
+            List<int> result = new List<int>(numbers.Count);
+            
+            if (numbers.Count == 0) return result;
+
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                result.Add(numbers[(i + count % numbers.Count) % numbers.Count]);
+            }
+
+            return result;
         }
 
         public static Dictionary<string, int> MergeWordCounts(
@@ -333,7 +356,29 @@ namespace CSharpBasics
             // 問題 21: 難易度 3 - Dictionary<TKey, TValue> の更新
             // 2つの Dictionary<string, int> を結合し、同じキーがある場合は値を合計した新しい Dictionary を返してください。
             // first と second 自体は変更しないでください。
-            throw new NotImplementedException();
+            Dictionary<string, int> result = new Dictionary<string, int>();
+
+            foreach (KeyValuePair<string, int> item in first)
+            {
+                if (!second.ContainsKey(item.Key))
+                {
+                    result[item.Key] = item.Value;
+                }
+                else
+                {
+                    result[item.Key] = item.Value + second[item.Key];
+                }
+            }
+
+            foreach (KeyValuePair<string, int> item in second)
+            {
+                if (!first.ContainsKey(item.Key))
+                {
+                    result[item.Key] = item.Value; 
+                }
+            }
+
+            return result;
         }
 
         public static string FindMostFrequentWord(IEnumerable<string> words)
