@@ -1,6 +1,7 @@
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharpBasics
 {
@@ -241,7 +242,8 @@ namespace CSharpBasics
             // 有効な点数が1つもない場合は 0 を返してください。
             double sum = 0;
             int denominator = 0;
-            foreach (int score in scores){
+            foreach (int score in scores)
+            {
                 if (score < 0 || 100 < score) continue;
                 sum += score;
                 denominator += 1;
@@ -269,7 +271,7 @@ namespace CSharpBasics
                 {
                     result.Add("FizzBuzz");
                 }
-                else if(i % 3 == 0)
+                else if (i % 3 == 0)
                 {
                     result.Add("Fizz");
                 }
@@ -295,8 +297,8 @@ namespace CSharpBasics
             string[] words = sentence.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             if (words.Length == 0) return 0;
 
-            int LongestWordsLength = 0; 
-            for (int i = 0; i <= words.Length -1; i++)
+            int LongestWordsLength = 0;
+            for (int i = 0; i <= words.Length - 1; i++)
             {
                 if (words[i].Length > LongestWordsLength)
                 {
@@ -304,7 +306,7 @@ namespace CSharpBasics
                 }
             }
 
-            return LongestWordsLength;         
+            return LongestWordsLength;
         }
 
         public static bool IsPalindromeIgnoreCaseAndSpaces(string text)
@@ -320,7 +322,7 @@ namespace CSharpBasics
 
             for (int i = 0; i < normalized.Length / 2; i++)
             {
-                
+
                 if (normalized[i] != normalized[normalized.Length - 1 - i])
                 {
                     return false;
@@ -338,7 +340,7 @@ namespace CSharpBasics
             // numbers が空の場合は空の List<int> を返してください。
             // 引数の List 自体は変更しないでください。
             List<int> result = new List<int>(numbers.Count);
-            
+
             if (numbers.Count == 0) return result;
 
             for (int i = 0; i < numbers.Count; i++)
@@ -374,7 +376,7 @@ namespace CSharpBasics
             {
                 if (!first.ContainsKey(item.Key))
                 {
-                    result[item.Key] = item.Value; 
+                    result[item.Key] = item.Value;
                 }
             }
 
@@ -389,7 +391,33 @@ namespace CSharpBasics
             // 空文字列になった単語は無視してください。
             // 最多の単語が複数ある場合は、最初にその最多回数へ到達した単語を返してください。
             // 有効な単語が1つもない場合は空文字列を返してください。
-            throw new NotImplementedException();
+            Dictionary<string, int> count = new Dictionary<string, int>();
+            int max = 0;
+            string maxWord = string.Empty;
+
+            if (words.Count() == 0) return "";
+
+            foreach (string w in words)
+            {
+                string normailzed = w.ToLower().Trim();
+                if (normailzed == "") continue;
+
+                if (!count.ContainsKey(normailzed))
+                {
+                    count[normailzed] = 1;
+                }
+                else
+                {
+                    count[normailzed]++;
+                }
+
+                if (count[normailzed] > max)
+                {
+                    max = count[normailzed];
+                    maxWord = normailzed;
+                }
+            }
+            return maxWord;
         }
 
         public static bool AreParenthesesBalanced(string text)
@@ -398,7 +426,33 @@ namespace CSharpBasics
             // text に含まれる丸括弧 '(' と ')' の対応が正しければ true、正しくなければ false を返してください。
             // 丸括弧以外の文字は無視してください。
             // 途中で閉じ括弧が多くなる場合、または最後に開き括弧が残る場合は false です。
-            throw new NotImplementedException();
+            int leftCount = 0;
+            int rightCount = 0;
+
+            foreach (char c in text)
+            {
+                if (c == '(')
+                {
+                    leftCount += 1;
+                }
+                else if (c == ')')
+                {
+                    rightCount += 1;
+                }
+
+                if (leftCount < rightCount)
+                {
+                    return false;
+                }
+            }
+            if (leftCount == rightCount)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public static List<int> CalculateRunningTotals(int[] numbers)
@@ -407,7 +461,15 @@ namespace CSharpBasics
             // numbers の各位置までの累積和を List<int> として返してください。
             // 例: [3, -1, 4] の場合、[3, 2, 6] を返します。
             // numbers が空の場合は空の List<int> を返してください。
-            throw new NotImplementedException();
+            List<int> result = new List<int>();
+            int sum = 0;
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                sum += numbers[i];
+                result.Add(sum);
+            }
+            return result;
         }
 
         public static Dictionary<string, List<int>> GroupNumbersByParity(int[] numbers)
@@ -416,8 +478,25 @@ namespace CSharpBasics
             // numbers を偶数と奇数に分け、"Even" と "Odd" をキーにした Dictionary<string, List<int>> を返してください。
             // 各 List では元の配列に出てきた順序を保ってください。
             // 偶数または奇数が1つもない場合でも、"Even" と "Odd" の両方のキーを必ず含めてください。
-            throw new NotImplementedException();
+            Dictionary<string, List<int>> result = new Dictionary<string, List<int>>();
+            List<int> evenArr = new List<int>();
+            List<int> oddArr = new List<int>();
+
+            foreach (int n in numbers)
+            {
+                if (n % 2 == 0)
+                {
+                    evenArr.Add(n);
+                }
+                else
+                {
+                    oddArr.Add(n);
+                }
+            }
+            result["Even"] = evenArr;
+            result["Odd"] = oddArr;
+
+            return result;
         }
     }
-
 }
