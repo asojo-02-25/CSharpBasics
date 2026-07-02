@@ -1,10 +1,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.35026.282
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11822.322 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpBasicProblem", "CSharpBasicProblem\CSharpBasicProblem.csproj", "{5B83085E-A66D-4493-A387-2D84B890362A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpBasicProblem.Tests", "CSharpBasicProblem.Tests\CSharpBasicProblem.Tests.csproj", "{D6F33AF3-9DC7-47DF-A512-8DA65246F635}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStudy", "BookStudy\BookStudy.csproj", "{AF643D25-3141-45D5-A82B-713D1F49725D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +22,10 @@ Global
 		{D6F33AF3-9DC7-47DF-A512-8DA65246F635}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6F33AF3-9DC7-47DF-A512-8DA65246F635}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6F33AF3-9DC7-47DF-A512-8DA65246F635}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF643D25-3141-45D5-A82B-713D1F49725D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF643D25-3141-45D5-A82B-713D1F49725D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF643D25-3141-45D5-A82B-713D1F49725D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF643D25-3141-45D5-A82B-713D1F49725D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
