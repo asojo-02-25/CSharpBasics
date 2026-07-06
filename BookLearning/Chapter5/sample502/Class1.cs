@@ -1,4 +1,4 @@
-﻿namespace BookLearning;
+﻿namespace BookLearning.Chapter5;
 
 class Sample502
 {

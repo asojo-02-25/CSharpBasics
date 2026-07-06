@@ -9,8 +9,8 @@ class Program
         p1 = new Person();
         //2つ目のPersonクラスのインスタンスを作成
         p2 = new Person();
-        p1.name = "山田太郎";
-        p1.age = 19;
+        p1.Name = "山田太郎";
+        p1.Age = 19;
         //メソッドでnameとageを設定
         p2.SetAgeAndName("佐藤花子", 23);
 

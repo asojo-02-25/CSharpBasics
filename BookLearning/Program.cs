@@ -1,10 +1,10 @@
-﻿namespace BookLearning;
+﻿namespace BookLearning.Chapter5;
 
 class Program
 {
     static void Main()
     {
-        Sample502.Run();
+        Sample508.Run();
     }
 }
 
