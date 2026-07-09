@@ -1,9 +1,9 @@
-﻿namespace Bookreview;
+﻿namespace Bookreview.Chapter5;
 
 class Program
 {
     static void Main()
     {
-        Example409.Run();
+        Sample508.Run();
     }
 }
