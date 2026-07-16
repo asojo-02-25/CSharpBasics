@@ -1,10 +1,11 @@
-﻿namespace BookLearning.Chapter6;
+﻿namespace BookLearning.Chapter7;
 
 class Program
 {
-    static void Main()
+    static public void Main()
     {
-        Sample609.Run();
+        Question2_3.Run();
     }
 }
+
 

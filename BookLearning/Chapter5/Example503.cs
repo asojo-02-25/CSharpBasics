@@ -9,7 +9,7 @@ namespace BookLearning.Chapter5
         static public void Run()
         {
             Console.WriteLine("ビンゴのサイズを入力してください");
-            int size = int.Parse(Console.ReadLine());
+            int size = int.Parse(Console.ReadLine()!);
 
             Bingo503 card = new Bingo503(size);
             card.Show();
