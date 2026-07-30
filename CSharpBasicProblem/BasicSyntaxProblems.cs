@@ -3,6 +3,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 
 namespace CSharpBasics
 {
@@ -137,7 +138,27 @@ namespace CSharpBasics
             // scores のうち 0 以上 100 以下の値だけを有効な点数として扱い、その平均値を返してください。
             // 無効な点数は平均の計算から除外してください。
             // 有効な点数が1つもない場合は 0 を返してください。
-            throw new NotImplementedException();
+            double sum = 0;
+            double count = 0;
+            double average = 0;
+
+            foreach (int score in scores)
+            {
+                if (score < 0 || score > 100) continue;
+
+                sum += score;
+                count++;
+            }
+
+            if (count == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                average = sum / count;
+                return Math.Round(average, 1);
+            }
         }
 
         public static List<string> BuildFizzBuzz(int start, int end)
@@ -146,8 +167,31 @@ namespace CSharpBasics
             // start から end までの整数を順番に見て、次のルールで文字列の List を返してください。
             // 3 と 5 の両方で割り切れる数は "FizzBuzz"、3 で割り切れる数は "Fizz"、
             // 5 で割り切れる数は "Buzz"、それ以外は数値を文字列にしたものを入れてください。
-            // start が end より大きい場合は空の List<string> を返してください。
-            throw new NotImplementedException();
+            // start が end より大きい場合は空の List<string>を返してください。
+            List<string> list = new List<string>();
+
+            if (start > end) return list;
+
+            for (int i = start; i <= end; i++)
+            {
+                if (i % 3 == 0 && i % 5 == 0)
+                {
+                    list.Add("FizzBuzz");
+                }
+                else if (i % 3 == 0)
+                {
+                    list.Add("Fizz");
+                }
+                else if (i % 5 == 0)
+                {
+                    list.Add("Buzz");
+                }
+                else
+                {
+                    list.Add(i.ToString());
+                }
+            }
+            return list;
         }
 
         public static int GetLongestWordLength(string sentence)
@@ -156,7 +200,17 @@ namespace CSharpBasics
             // sentence を半角スペースで区切ったとき、最も長い単語の文字数を返してください。
             // 連続したスペースや前後のスペースは単語として数えません。
             // 単語が1つもない場合は 0 を返してください。
-            throw new NotImplementedException();
+            string[] words = sentence.Split();
+            int max = 0;
+
+            foreach (string word in words)
+            {
+                if(word.Length > max)
+                {
+                    max = word.Length;
+                }
+            }
+            return max;
         }
 
         public static bool IsPalindromeIgnoreCaseAndSpaces(string text)
@@ -165,7 +219,16 @@ namespace CSharpBasics
             // text が回文なら true、そうでなければ false を返してください。
             // 大文字と小文字は区別せず、半角スペースは無視してください。
             // 例: "Never odd or even" はスペースと大文字小文字を無視すると回文なので true です。
-            throw new NotImplementedException();
+            string normalizedtext = text.ToLower().Replace(" ", "");
+
+            for (int i = 0; i < normalizedtext.Length / 2; i++)
+            {
+                if (normalizedtext[i] != normalizedtext[normalizedtext.Length - 1 - i])
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public static List<int> RotateLeft(List<int> numbers, int count)
@@ -176,7 +239,22 @@ namespace CSharpBasics
             // count が要素数より大きい場合も正しく回転してください。
             // numbers が空の場合は空の List<int> を返してください。
             // 引数の List 自体は変更しないでください。
-            throw new NotImplementedException();
+            if (numbers.Count() == 0)
+            {
+                return new List<int>();
+            }
+
+            int rotationCount = count % numbers.Count;
+            var result = new List<int>(numbers.Count);
+
+            for(int destinationIndex = 0; destinationIndex < numbers.Count; destinationIndex++)
+            {
+                int sourceIndex = (destinationIndex + rotationCount) % numbers.Count;
+
+                result.Add(numbers[sourceIndex]);
+            }
+
+            return result;
         }
 
         public static Dictionary<string, int> MergeWordCounts(
